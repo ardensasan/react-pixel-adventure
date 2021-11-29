@@ -26,7 +26,7 @@ const Main = () => {
           fill="black"
         />
         {map.map((tile)=>{
-          return <Rect x={tile.x} y={tile.y} width={tile.width} height={tile.height} fill={!tile.value ? "yellow": "red"}/>
+          return <Rect x={tile.x} y={tile.y} width={tile.w} height={tile.h} fill={!tile.value ? "yellow": "red"}/>
         })}
         <Rect
           height={player.getWidth()}
