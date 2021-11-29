@@ -5,10 +5,11 @@ import Player from "./Player";
 
 class EntityAnimation {
   #animation;
-  constructor(rect: Rect, player: Player,map:Array<any>) {
-    this.#animation = new Animation(() => {
+  constructor(rect: Rect, player: Player, map: Array<any>) {
+    this.#animation = new Animation(({timeDiff}:any) => {
       rect.position(player.getPosition());
-      checkTileIntersection(player,map)
+      player.moveX(map,timeDiff)
+      player.moveY(map,timeDiff)
     });
   }
 
