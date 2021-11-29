@@ -4,7 +4,7 @@ class Entity {
   #h = 0;
   #w = 0;
   #xDirection = 1;
-  #speed = 0.1;
+  #speed = 0.2;
   constructor(x = 0, y = 0, w = 32, h = 32) {
     this.#x = x;
     this.#y = y;
