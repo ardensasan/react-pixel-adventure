@@ -1,10 +1,18 @@
 class Entity {
+  sprite = new window.Image();
   #x = 0;
   #y = 0;
   #h = 0;
   #w = 0;
   #xDirection = 1;
   #speed = 0.2;
+  #isMoving = false;
+  cropProperty = {
+    x: 0,
+    y: 0,
+    height: 32,
+    width: 32,
+  }
   constructor(x = 0, y = 0, w = 32, h = 32) {
     this.#x = x;
     this.#y = y;
@@ -14,6 +22,7 @@ class Entity {
   //setters
   moveX = (map: Array<any>,timeDiff:number) => {}
   moveY = (map: Array<any>,timeDiff:number) => {}
+  setIsMoving = (bool:boolean) => this.#isMoving = bool
   setPosition = (x: number, y: number) => {
     this.#x = x;
     this.#y = y;
@@ -22,6 +31,8 @@ class Entity {
   setYPosition = (y: number) => (this.#y = y);
   setXDirection = (direction: number) => (this.#xDirection = direction);
   //getters
+  getIsMoving  = () => this.#isMoving
+  updateCropXProperty = (x:number) => this.cropProperty.x = x;
   getPosition = () => ({ x: this.#x, y: this.#y });
   getXPosition = () => this.#x;
   getYPosition = () => this.#y;

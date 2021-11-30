@@ -1,11 +1,11 @@
-import { Rect as RectType } from "konva/lib/shapes/Rect";
+import { Image as KonvaImage } from "konva/lib/shapes/Image";
 import { useEffect, useRef, useState } from "react";
-import { Layer, Rect, Stage } from "react-konva";
+import { Layer, Rect, Stage, Image } from "react-konva";
 import EntityAnimation from "../classes/Animation";
 import Player from "../classes/Player";
 import map from "../utils/map";
 const Main = () => {
-  const playerRect = useRef<RectType>(null);
+  const playerRect = useRef<KonvaImage>(null);
   const player = new Player(32, 32, 32, 32);
   const [mapLevel, setMapLevel] = useState<number>(0);
   useEffect(() => {
@@ -36,9 +36,12 @@ const Main = () => {
             />
           );
         })}
-        <Rect
+        <Image
+          image={player.sprite}
           height={player.getWidth()}
           width={player.getHeight()}
+          x={32}
+          y={32}
           fill="white"
           ref={playerRect}
         />

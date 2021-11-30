@@ -1,14 +1,24 @@
 import { Animation } from "konva/lib/Animation";
-import { Rect } from "konva/lib/shapes/Rect";
+import { Image } from "konva/lib/shapes/Image";
 import Player from "./Player";
 
 class EntityAnimation {
   #animation;
-  constructor(rect: Rect, player: Player, map: Array<any>) {
+  constructor(image: Image, player: Player, map: Array<any>) {
+    let time = 0;
     this.#animation = new Animation(({timeDiff}:any) => {
-      rect.position(player.getPosition());
+      time++;
+      if(time > timeDiff/10){
+        time = 0;
+        player.cropProperty.x += 32;
+        if(player.cropProperty.x >= player.sprite.width ){
+          player.cropProperty.x = 0;
+        }
+      }
+      image.position(player.getPosition());
         player.moveX(map,timeDiff)
         player.moveY(map,timeDiff)
+        image.crop(player.cropProperty)
     });
   }
   startAnimation = () => this.#animation.start();
