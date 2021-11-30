@@ -14,12 +14,6 @@ class KeyboardState {
     if(code === "Space"){
       this.Space = bool;
     }
-    // if (code === "KeyW") {
-    //   this.KeyW = bool;
-    // }
-    // if (code === "KeyS") {
-    //   this.KeyS = bool;
-    // }
   };
 
   resetKeyboardState = () =>{

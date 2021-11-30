@@ -6,7 +6,7 @@ import Player from "../classes/Player";
 import map from "../utils/map";
 const Main = () => {
   const playerRect = useRef<RectType>(null);
-  const player = new Player(0, 0, 32, 32);
+  const player = new Player(32, 32, 32, 32);
   const [mapLevel, setMapLevel] = useState<number>(0);
   useEffect(() => {
     let animation;

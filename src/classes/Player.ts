@@ -3,7 +3,8 @@ import Entity from "./Entity";
 import KeyboardState from "./KeyboardState";
 
 class Player extends Entity {
-  #downwardForce = 0.5;
+  #yVelocity = 1;
+  #isJumping = false;
   #keyboard = new KeyboardState();
   constructor(x = 0, y = 0, w = 32, h = 32) {
     super(x, y, w, h);
@@ -32,41 +33,55 @@ class Player extends Entity {
   moveX = (map: Array<any>, timeDiff: number) => {
     let tempXPosition = this.getXPosition();
     if (this.#keyboard.KeyA) {
-      this.setXPosition(
-        this.getXPosition() + this.getSpeed() * (-1 * timeDiff)
-      );
-      const tile = checkTileIntersection(this, map);
-      if (tile) {
-        this.setXPosition(tile.x + tile.w);
+      this.setXPosition(tempXPosition - this.getSpeed() * timeDiff);
+      if (checkTileIntersection(this, map)) {
+        tempXPosition = Math.ceil(tempXPosition)
+        this.setXPosition(tempXPosition);
+        while (!checkTileIntersection(this, map)) {
+          tempXPosition = this.getXPosition();
+          this.setXPosition(tempXPosition - 1);
+        }
+        this.setXPosition(tempXPosition);
       }
     }
     if (this.#keyboard.KeyD) {
-      this.setXPosition(this.getXPosition() + this.getSpeed() * timeDiff);
-      const tile = checkTileIntersection(this, map);
-      if (tile) {
-        this.setXPosition(tile.x - tile.w);
+      this.setXPosition(tempXPosition + this.getSpeed() * timeDiff);
+      if (checkTileIntersection(this, map)) {
+        tempXPosition = Math.floor(tempXPosition)
+        this.setXPosition(tempXPosition);
+        while (!checkTileIntersection(this, map)) {
+          tempXPosition = this.getXPosition();
+          this.setXPosition(tempXPosition + 1);
+        }
+        this.setXPosition(tempXPosition);
       }
     }
   };
 
   moveY = (map: Array<any>, timeDiff: number) => {
     let tempYPosition = this.getYPosition();
-    this.setYPosition(tempYPosition + this.#downwardForce * 16);
-    if (this.#keyboard.Space) {
-      this.setYPosition(tempYPosition - 20);
-      const tile = checkTileIntersection(this, map);
-      if (tile) {
-        this.setYPosition(tile.y + tile.h);
+    this.setYPosition(this.getYPosition()+this.#yVelocity*timeDiff)
+    if(checkTileIntersection(this, map)){
+      this.setYPosition(Math.floor(tempYPosition));
+      while (!checkTileIntersection(this, map)) {
+        tempYPosition = this.getYPosition();
+        this.setYPosition(tempYPosition + 1);
       }
+      this.setYPosition(tempYPosition);
+      this.#isJumping = false;
     }
-    const tile = checkTileIntersection(this, map);
-    if (tile) {
-      this.setYPosition(tile.y - tile.h);
+
+    if(this.#keyboard.Space && !this.#isJumping){
+      this.#isJumping = true;
+      this.setYPosition(this.getYPosition()-100)
     }
   };
+
+  IsJumping = () => this.#isJumping;
   resetKeyboardState = () => {
     this.#keyboard.resetKeyboardState();
   };
+
   getKeyboardState = () => this.#keyboard;
 }
 
