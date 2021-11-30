@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/react-pixel-adventure/static/css/main.8c8b27cf.chunk.css",
+    "main.js": "/react-pixel-adventure/static/js/main.948d2007.chunk.js",
+    "main.js.map": "/react-pixel-adventure/static/js/main.948d2007.chunk.js.map",
+    "runtime-main.js": "/react-pixel-adventure/static/js/runtime-main.8f5abfa8.js",
+    "runtime-main.js.map": "/react-pixel-adventure/static/js/runtime-main.8f5abfa8.js.map",
+    "static/js/2.b1e204d3.chunk.js": "/react-pixel-adventure/static/js/2.b1e204d3.chunk.js",
+    "static/js/2.b1e204d3.chunk.js.map": "/react-pixel-adventure/static/js/2.b1e204d3.chunk.js.map",
+    "static/js/3.8cb282c6.chunk.js": "/react-pixel-adventure/static/js/3.8cb282c6.chunk.js",
+    "static/js/3.8cb282c6.chunk.js.map": "/react-pixel-adventure/static/js/3.8cb282c6.chunk.js.map",
+    "index.html": "/react-pixel-adventure/index.html",
+    "static/css/main.8c8b27cf.chunk.css.map": "/react-pixel-adventure/static/css/main.8c8b27cf.chunk.css.map",
+    "static/js/2.b1e204d3.chunk.js.LICENSE.txt": "/react-pixel-adventure/static/js/2.b1e204d3.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8f5abfa8.js",
+    "static/js/2.b1e204d3.chunk.js",
+    "static/css/main.8c8b27cf.chunk.css",
+    "static/js/main.948d2007.chunk.js"
+  ]
+}
