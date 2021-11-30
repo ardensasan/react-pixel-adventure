@@ -42,7 +42,6 @@ const Main = () => {
           width={player.getHeight()}
           x={32}
           y={32}
-          fill="white"
           ref={playerRect}
         />
       </Layer>
