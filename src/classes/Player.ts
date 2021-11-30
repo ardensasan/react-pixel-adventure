@@ -60,20 +60,34 @@ class Player extends Entity {
 
   moveY = (map: Array<any>, timeDiff: number) => {
     let tempYPosition = this.getYPosition();
+    if(this.#yVelocity < 1){
+      this.#yVelocity+=0.1
+    }
     this.setYPosition(this.getYPosition()+this.#yVelocity*timeDiff)
     if(checkTileIntersection(this, map)){
-      this.setYPosition(Math.floor(tempYPosition));
-      while (!checkTileIntersection(this, map)) {
-        tempYPosition = this.getYPosition();
-        this.setYPosition(tempYPosition + 1);
+      if(this.#yVelocity < 0){
+        this.setYPosition(Math.ceil(tempYPosition));
+        while (!checkTileIntersection(this, map)) {
+          tempYPosition = this.getYPosition();
+          this.setYPosition(tempYPosition - 1);
+          this.#yVelocity = 0;
+        }
+      }else{
+        this.setYPosition(Math.floor(tempYPosition));
+        while (!checkTileIntersection(this, map)) {
+          tempYPosition = this.getYPosition();
+          this.setYPosition(tempYPosition + 1);
+        }
+        this.#isJumping = false;
       }
+
       this.setYPosition(tempYPosition);
-      this.#isJumping = false;
+      this.#yVelocity = 1;
     }
 
     if(this.#keyboard.Space && !this.#isJumping){
+      this.#yVelocity = -1.1;
       this.#isJumping = true;
-      this.setYPosition(this.getYPosition()-100)
     }
   };
 
